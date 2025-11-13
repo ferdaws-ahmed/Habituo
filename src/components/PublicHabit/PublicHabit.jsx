@@ -11,7 +11,7 @@ const PublicHabits = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:3000/publicHabits")
+    fetch("https://habituo-server.vercel.app/publicHabits")
       .then((res) => res.json())
       .then((data) => {
         setHabits(data);

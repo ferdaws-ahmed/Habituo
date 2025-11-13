@@ -29,7 +29,7 @@ const AddHabit = () => {
     try {
       setLoading(true);
       //Insert into myhabit collection
-      const res = await fetch("http://localhost:3000/myhabit", {
+      const res = await fetch("https://habituo-server.vercel.app/myhabit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(habitData),
@@ -42,7 +42,7 @@ const AddHabit = () => {
 
         //  Insert into public-habits collection
         try {
-          await fetch("http://localhost:3000/publicHabits", {
+          await fetch("https://habituo-server.vercel.app/publicHabits", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(habitData),

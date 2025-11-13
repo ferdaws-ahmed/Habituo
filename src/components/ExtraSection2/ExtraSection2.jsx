@@ -32,7 +32,7 @@ const MotionSection = () => {
 
         <motion.div
             onClick={() => navigate("/login")}
-           className="w-[20%] mx-auto py-2 font-semibold rounded-xl text-white bg-gradient-to-r from-indigo-600 to-pink-500 hover:scale-[1.03] active:scale-[0.98] transition-transform duration-200"
+           className="w-[30%] md:w-[20%] mx-auto py-2 font-semibold rounded-xl text-white bg-gradient-to-r from-indigo-600 to-pink-500 hover:scale-[1.03] active:scale-[0.98] transition-transform duration-200"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >

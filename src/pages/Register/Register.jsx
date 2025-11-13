@@ -47,7 +47,7 @@ const Register = () => {
           .then(() => {
             firebaseUser.reload().then(() => {
               
-              fetch("http://localhost:3000/users", {
+              fetch("https://habituo-server.vercel.app/users", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -89,7 +89,7 @@ const Register = () => {
           createdAt: new Date(),
         };
 
-        fetch("http://localhost:3000/users", {
+        fetch("https://habituo-server.vercel.app/users", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(user),

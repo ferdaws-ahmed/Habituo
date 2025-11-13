@@ -9,7 +9,7 @@ const UpdateHabit = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/myhabit/${id}`)
+    fetch(`https://habituo-server.vercel.app/myhabit/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setHabit(data);
@@ -33,7 +33,7 @@ const UpdateHabit = () => {
       imageURL: form.image.value,
     };
 
-    fetch(`http://localhost:3000/myhabit/${id}`, {
+    fetch(`https://habituo-server.vercel.app/myhabit/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedHabit),

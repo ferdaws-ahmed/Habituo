@@ -5,7 +5,7 @@ const FeaturedHabits = () => {
   const [habits, setHabits] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/featuresHabit")
+    fetch("https://habituo-server.vercel.app/featuresHabit")
       .then((res) => res.json())
       .then((data) => {
         console.log("Fetched habits:", data);

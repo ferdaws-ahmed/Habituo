@@ -45,7 +45,7 @@ const HabitDetails = () => {
   useEffect(() => {
     const fetchHabit = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/publicHabits/${id}`);
+        const res = await fetch(`https://habituo-server.vercel.app/publicHabits/${id}`);
         const data = await res.json();
         setHabit(data);
 
@@ -79,7 +79,7 @@ const HabitDetails = () => {
       const updatedHistory = [...(habit.completionHistory || []), newEntry];
 
       // PATCH request to backend
-      const res = await fetch(`http://localhost:3000/publicHabits/${habit._id}/markComplete`, {
+      const res = await fetch(`https://habituo-server.vercel.app/publicHabits/${habit._id}/markComplete`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ completionHistory: updatedHistory }),

@@ -41,7 +41,7 @@ const MyHabits = () => {
     if (!user?.email) return;
     setLoading(true);
     try {
-      const res = await fetch(`http://localhost:3000/myhabit?userEmail=${user.email}`);
+      const res = await fetch(`https://habituo-server.vercel.app/myhabit?userEmail=${user.email}`);
       const data = await res.json();
       const habitsArray = Array.isArray(data) ? data : [];
       const updated = habitsArray.map((habit) => ({
@@ -64,7 +64,7 @@ const MyHabits = () => {
 
   const handleDelete = async () => {
     try {
-      await fetch(`http://localhost:3000/myhabit/${deleteId}`, { method: "DELETE" });
+      await fetch(`https://habituo-server.vercel.app/myhabit/${deleteId}`, { method: "DELETE" });
       toast.success("Habit deleted successfully!");
       setHabits(habits.filter((habit) => habit._id !== deleteId));
       setDeleteId(null);
@@ -87,7 +87,7 @@ const handleMarkComplete = async (habitId) => {
 
   try {
     // backend call
-    const res = await fetch(`http://localhost:3000/syncMarkComplete/${habitId}`, {
+    const res = await fetch(`https://habituo-server.vercel.app/syncMarkComplete/${habitId}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userEmail: user.email }),

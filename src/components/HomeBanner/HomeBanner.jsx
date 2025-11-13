@@ -78,7 +78,7 @@ const HomeBanner = () => {
                 
                 <button
                   onClick={() => navigate("/login")}
-                  className="btn btn-outline  border-white  text-white  rounded-xl  font-semibold shadow-md w-[10%] py-2  bg-transparent hover:bg-gradient-to-r hover:from-indigo-600 hover:to-pink-500 hover:text-white hover:scale-[1.03] active:scale-[0.98]transition-transform duration-200"
+                  className="w-[30%] md:w-[10%] mx-auto py-2 font-semibold rounded-xl text-white bg-gradient-to-r from-indigo-600 to-pink-500 hover:scale-[1.03] active:scale-[0.98] transition-transform duration-200"
                 >
                   Get Started
                 </button>
