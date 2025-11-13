@@ -1,17 +1,28 @@
-# React + Vite
+# 🧠 Habituo — Build Better Habits, Every Day
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Habituo** is a modern habit-tracking web application that helps users build consistency, set goals, and stay motivated through a visually engaging and user-friendly interface.
 
-Currently, two official plugins are available:
+🌐 **Live Site URL:** [https://habituo.netlify.app](https://beamish-arithmetic-5515cd.netlify.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 🕒 **Personal Habit Dashboard** — Users can add, edit, and track their personal habits easily with progress updates.
+- 🌍 **Public Habits Library** — Explore and get inspired by other users’ public habits to improve your own lifestyle.
+- ✅ **Real-time Habit Syncing** — Changes in your personal habits reflect instantly in the public collection (and vice versa when applicable).
+- 💬 **Interactive UI with Animations** — Built using React, Framer Motion, and Tailwind CSS for a smooth and dynamic user experience.
+- 🔐 **User Authentication** — Secure login and registration system powered by Firebase Authentication.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# ph-wd-b12-assignment-10-client-side-repo
+## 🧩 Technologies Used
+
+- **Frontend:** React, Tailwind CSS, DaisyUI, Framer Motion, React Simple Typewriter 
+- **Routing:** React Router  
+- **Backend:** Node.js, Express.js, MongoDB  
+- **Authentication:** Firebase Auth  
+- **Notifications:** React Toastify  
+
+---
+
