@@ -44,12 +44,7 @@ const PublicHabits = () => {
     setFilteredHabits(results);
   }, [search, category, habits]);
 
-
-
-
-  
-
-  //  Custom Loader
+  // Loader
   const Loader = () => (
     <div className="flex flex-col items-center justify-center min-h-[70vh]">
       <motion.div
@@ -81,13 +76,12 @@ const PublicHabits = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-b from-gray-100 via-gray-50 to-white dark:from-[#3d84dc] dark:via-[#58e28f] dark:to-[#cae640]">
-      {/*  Main Content (takes available space) */}
       <div className="flex-grow py-14 px-5">
         <h2 className="text-4xl font-extrabold text-center mb-8 text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-red-600">
           Browse Public Habits
         </h2>
 
-        {/*  Search & Filter */}
+        {/* Search & Filter */}
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 max-w-5xl mx-auto mb-10">
           <input
             type="text"
@@ -96,7 +90,6 @@ const PublicHabits = () => {
             onChange={(e) => setSearch(e.target.value)}
             className="w-full sm:w-1/2 p-3 border border-gray-300 rounded-xl shadow-sm focus:ring-2 focus:ring-indigo-400 outline-none"
           />
-
           <select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
@@ -111,66 +104,61 @@ const PublicHabits = () => {
           </select>
         </div>
 
-        {/*  Habits Grid */}
+        {/* Habits Grid */}
         {filteredHabits.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {filteredHabits.map((habit) => (
-              <motion.div
-                key={habit._id}
-                className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden"
-                whileHover={{ scale: 1.03 }}
+            {filteredHabits.map((habit, i) => (
+              <div
+                key={habit._id || i}
+                className="flex flex-col justify-between relative overflow-hidden rounded-2xl shadow-lg group hover:shadow-2xl transition-all duration-500 border border-gray-200 dark:border-gray-700"
               >
-                {habit.image && (
-                  <img
-                    src={habit.image}
-                    alt={habit.habitName}
-                    className="w-full h-48 object-cover"
-                  />
-                )}
+                {/* Card Background Gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-pink-500/10 group-hover:opacity-100 opacity-0 transition-opacity duration-500"></div>
 
-                <div className="p-6 flex flex-col justify-between h-full">
-                  <div>
-                    <h3 className="text-2xl font-semibold text-indigo-600 dark:text-indigo-300 mb-2">
+                {/* Content */}
+                <div className="relative z-10 p-6 bg-white/70 dark:bg-gray-800/80 backdrop-blur-md flex-1 flex flex-col">
+                  <div className="mb-4">
+                    <h3 className="text-2xl font-bold text-indigo-700 dark:text-indigo-300 mb-2 group-hover:text-pink-500 transition-colors">
                       {habit.habitName}
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">
+                    <p className="text-gray-700 dark:text-gray-300 text-sm mb-2">
                       {habit.shortDescription || "No description available."}
                     </p>
-
-                    <div className="text-sm text-gray-500 dark:text-gray-400 space-y-1">
+                    <div className="space-y-1 text-sm text-gray-500 dark:text-gray-400">
                       <p>
-                        <strong>👤 Creator:</strong>{" "}
-                        {habit.creatorName || "Unknown"}
+                        <strong>👤 Creator:</strong> {habit.creatorName || "Unknown"}
                       </p>
                       <p>
-                        <strong>📂 Category:</strong>{" "}
-                        {habit.category || "General"}
+                        <strong>📂 Category:</strong> {habit.category || "General"}
                       </p>
                       <p>
-                        <strong>📅 Date:</strong>{" "}
+                        <strong>🕒 Created:</strong>{" "}
                         {new Date(habit.createDate).toLocaleDateString("en-GB")}
                       </p>
                     </div>
                   </div>
 
-                  <Link to={`/habit-details/${habit._id}`}>
-                    <button className="mt-5 py-2 px-4 rounded-xl bg-gradient-to-r from-indigo-600 to-pink-500 text-white font-semibold hover:scale-[1.03] transition-transform duration-200">
-                      View More
-                    </button>
-                  </Link>
+                  {/* Button */}
+                  <div className="mt-auto">
+                    <Link to={`/habit-details/${habit._id}`}>
+                      <button className="w-full py-2 font-semibold rounded-xl text-white bg-gradient-to-r from-indigo-600 to-pink-500 hover:scale-[1.03] active:scale-[0.98] transition-transform duration-200">
+                        View Details
+                      </button>
+                    </Link>
+                  </div>
                 </div>
-              </motion.div>
+
+                {/* Decorative Bottom Bar */}
+                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"></div>
+              </div>
             ))}
           </div>
         ) : (
           <div className="flex flex-col justify-center items-center min-h-[60vh]">
-            <p className="text-center text-gray-500 text-lg">
-              No habits found 😔
-            </p>
+            <p className="text-center text-gray-500 text-lg">No habits found 😔</p>
           </div>
         )}
       </div>
-
     </div>
   );
 };
