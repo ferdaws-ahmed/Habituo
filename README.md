@@ -26,3 +26,46 @@
 
 ---
 
+## 📦 Dependencies Used
+
+- react  
+- react-dom  
+- react-router-dom  
+- tailwindcss  
+- daisyui  
+- framer-motion  
+- react-simple-typewriter  
+- firebase  
+- react-toastify  
+- express  
+- mongodb  
+- cors  
+- dotenv  
+- nodemon  
+
+
+
+---
+
+## 💻 How to Run Locally
+
+Follow these steps to run **Habituo** on your local machine:
+
+1. **Clone the repository**  
+```bash
+git clone https://github.com/your-username/habituo.git
+Navigate to the project folder
+
+cd habituo
+npm install
+npm start
+Visit http://localhost:3000
+ to see the project running locally.
+
+
+
+## ❤️ Author
+
+Developed by: Md. Ferdaws (Alif)
+📧 Email: mdalifmahmud555@gmail.com
+🌐 GitHub: [github.com/ferdaws-ahmed](https://github.com/ferdaws-ahmed)
