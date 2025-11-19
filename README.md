@@ -57,18 +57,20 @@ Follow the steps below to run the **Habituo** project on your local machine:
 git clone https://github.com/your-username/habituo.git
 ```
 2️⃣ Open the Project Folder
-
+```
 cd habituo
-
+```
 3️⃣ Install All Dependencies
+```
 npm install
-
+```
 4️⃣ Start the Development Server
+```
 npm start
-
+```
 5️⃣ Open in Browser
 
-Visit: http://localhost:3000
+Visit: ```http://localhost:3000```
 
 
 ## ❤️ Author
