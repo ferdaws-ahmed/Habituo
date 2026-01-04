@@ -1,57 +1,103 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router';
-import { FiAlertCircle } from 'react-icons/fi';
+import { useNavigate } from 'react-router';
+import { FiArrowLeft, FiHome } from 'react-icons/fi';
 
 const ErrorPage = () => {
+  const navigate = useNavigate();
+
+  // প্রতিটি সংখ্যার জন্য আলাদা অ্যানিমেশন ভেরিয়েন্ট
+  const numberVariants = {
+    animate: (i) => ({
+      y: [0, -30, 0],
+      rotate: [0, i % 2 === 0 ? 5 : -5, 0],
+      transition: {
+        duration: 3,
+        repeat: Infinity,
+        delay: i * 0.4,
+        ease: "easeInOut"
+      }
+    })
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 p-4 w-10/12 mx-auto">
-      <motion.div
-        className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-10 max-w-lg text-center"
-        initial={{ scale: 0.5, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ type: 'spring', stiffness: 120, damping: 15 }}
-      >
+    <div className="min-h-screen bg-[#030303] flex flex-col items-center justify-center overflow-hidden font-sans relative">
+      
+      {/* Background: Subtle Radial Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-600/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+      {/* Main 404 Section */}
+      <div className="relative z-10 flex flex-col items-center">
+        
+        {/* Animated Numbers - Elegant Floating */}
+        <div className="flex gap-4 md:gap-8 mb-4">
+          {[4, 0, 4].map((num, i) => (
+            <motion.span
+              key={i}
+              custom={i}
+              variants={numberVariants}
+              animate="animate"
+              whileHover={{ scale: 1.1, color: "#a855f7" }}
+              className="text-[10rem] md:text-[18rem] font-black text-white cursor-default select-none transition-colors duration-300"
+              style={{
+                textShadow: "0 20px 50px rgba(0,0,0,0.5)"
+              }}
+            >
+              {num}
+            </motion.span>
+          ))}
+        </div>
+
+        {/* Text Content */}
         <motion.div
-          className="text-7xl text-red-500 mb-6 animate-bounce inline-block"
-          initial={{ rotate: 0 }}
-          animate={{ rotate: [0, 15, -15, 0] }}
-          transition={{ repeat: Infinity, duration: 2 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1 }}
+          className="text-center"
         >
-          <FiAlertCircle />
+          <h2 className="text-2xl md:text-3xl font-light text-gray-400 tracking-[0.3em] uppercase mb-12">
+            The page has <span className="text-white font-medium">Vanished</span>
+          </h2>
+
+          {/* New Interactive Buttons */}
+          <div className="flex flex-col md:flex-row gap-6 items-center">
+            <motion.button
+              whileHover={{ y: -5, backgroundColor: "white", color: "black" }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => navigate('/')}
+              className="group flex items-center gap-3 px-8 py-4 border border-white/20 text-white rounded-full transition-all duration-300"
+            >
+              <FiHome className="text-xl" />
+              <span className="font-medium tracking-wide">Return Home</span>
+            </motion.button>
+
+            <motion.button
+              whileHover={{ x: -5 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => navigate(-1)}
+              className="flex items-center gap-2 text-gray-500 hover:text-white transition-colors duration-300"
+            >
+              <FiArrowLeft />
+              <span>Go Back</span>
+            </motion.button>
+          </div>
         </motion.div>
+      </div>
 
-        <motion.h1
-          className="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-4"
-          initial={{ y: -50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.2, type: 'spring', stiffness: 100 }}
-        >
-          Oops! Something went wrong
-        </motion.h1>
+      {/* Background Decorative Line */}
+      <div className="absolute bottom-20 left-0 w-full flex justify-center opacity-20 px-10">
+        <div className="h-[1px] w-full max-w-7xl bg-gradient-to-r from-transparent via-white to-transparent"></div>
+      </div>
 
-        <motion.p
-          className="text-gray-600 dark:text-gray-300 mb-6"
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.4 }}
+      {/* Corner Labels */}
+      <div className="absolute top-10 left-10 overflow-hidden hidden md:block">
+        <motion.p 
+          initial={{ x: -100 }} animate={{ x: 0 }}
+          className="text-[10px] text-gray-600 tracking-[0.5em] uppercase"
         >
-          The page you are looking for might be under maintenance or does not exist.
+          Habituo // Error Log
         </motion.p>
-
-        <motion.div
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <Link
-            to="/"
-            className="px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full font-bold shadow-lg hover:from-purple-600 hover:to-pink-600 transition-all"
-          >
-            Go Back Home
-          </Link>
-        </motion.div>
-      </motion.div>
+      </div>
     </div>
   );
 };
