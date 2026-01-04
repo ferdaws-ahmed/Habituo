@@ -6,6 +6,9 @@ import TrackProgressSection from '../ExtraSection1/ExtraSection1';
 import CommunitySection from '../ExtraSection2/ExtraSection2';
 import MotionSection from '../ExtraSection2/ExtraSection2';
 import MarqueeSection from '../ExtraSection1/ExtraSection1';
+import GlobalStats from '../GlobalStates/GlobalStates';
+import Testimonials from '../Testmonial/Testmonial';
+import Categories from '../Categories/Categories';
 
 const Home = () => {
     return (
@@ -15,6 +18,9 @@ const Home = () => {
             <BenefitsSection></BenefitsSection>
             <MarqueeSection></MarqueeSection>
              <MotionSection></MotionSection>
+             <Categories></Categories>
+             <GlobalStats></GlobalStats>
+             <Testimonials></Testimonials>
            
            
         </div>

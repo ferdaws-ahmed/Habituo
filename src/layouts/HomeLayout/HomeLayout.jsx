@@ -1,24 +1,27 @@
-// HomeLayout.jsx
-import React from 'react';
+import React, { useContext } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
 import { Outlet } from 'react-router';
+import { ThemeContext } from '../../contexts/ThemeContext';
 
 const HomeLayout = () => {
+    
+    const { theme } = useContext(ThemeContext);
+
     return (
-        <div className="flex flex-col min-h-screen ">
-            {/* Header / Navbar */}
-            <header className='w-10/12 mx-auto py-4'>
+        <div 
+            data-theme={theme} 
+            className="flex flex-col min-h-screen bg-base-100 text-base-content transition-colors duration-300"
+        >
+            <header className='w-full mx-auto sticky top-0 z-50 '>
                 <Navbar />
             </header>
 
-            {/* Main content */}
-            <main className='flex-grow w-10/12 mx-auto py-6'>
+            <main className='flex-grow w-full md:w-10/12 mx-auto'>
                 <Outlet />
             </main>
 
-            {/* Footer */}
-            <footer className='w-10/12 mx-auto py-4'>
+            <footer className='w-11/12 md:w-10/12 mx-auto py-4'>
                 <Footer />
             </footer>
         </div>

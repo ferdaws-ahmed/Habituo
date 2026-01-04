@@ -28,49 +28,40 @@
 
 ## 📦 Dependencies Used
 
-### Frontend Dependencies
 - react  
-- react-dom
-- react-router
-- react-icons
+- react-dom  
+- react-router-dom  
 - tailwindcss  
 - daisyui  
 - framer-motion  
 - react-simple-typewriter  
 - firebase  
 - react-toastify  
-
-### Backend Dependencies
 - express  
 - mongodb  
 - cors  
 - dotenv  
 - nodemon  
 
+
+
 ---
 
 ## 💻 How to Run Locally
 
-Follow the steps below to run the **Habituo** project on your local machine:
-1️⃣ Clone the Repository
+Follow these steps to run **Habituo** on your local machine:
+
+1. **Clone the repository**  
 ```bash
 git clone https://github.com/your-username/habituo.git
-```
-2️⃣ Open the Project Folder
-```
-cd habituo
-```
-3️⃣ Install All Dependencies
-```
-npm install
-```
-4️⃣ Start the Development Server
-```
-npm start
-```
-5️⃣ Open in Browser
+Navigate to the project folder
 
-Visit: ```http://localhost:3000```
+cd habituo
+npm install
+npm start
+Visit http://localhost:3000
+ to see the project running locally.
+
 
 
 ## ❤️ Author

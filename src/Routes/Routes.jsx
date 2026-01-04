@@ -12,6 +12,15 @@ import HabitDetails from "../components/HabitDetails/HabitDetails";
 import UpdateHabit from "../components/UpdateHabit/UpdateHbit";
 import TermsAndConditions from "../components/TermsCondition/TermsAndCondition";
 import PrivacyPolicy from "../components/PrivacyPolicy/PrivacyPolicy";
+import Profile from "../components/Profile/Profile";
+import Dashboard from "../Dashboard/Dashboard";
+import UserDirectory from "../Dashboard/AdminUserDirectory";
+import GlobalAnalytics from "../Dashboard/AdminGlobalAnalytics";
+import SystemLogs from "../Dashboard/SystemLog";
+import AllHabits from "../Dashboard/AdminAllHabits";
+import TourHabituo from "../components/Tour Habituo/TourHabituo";
+import ContactUs from "../components/Contact Us/ContactUs";
+
 
 
 
@@ -28,6 +37,15 @@ const router = createBrowserRouter([
                 Component: Home
             },
             {
+                path:'/tour-habituo',
+                Component: TourHabituo
+            },
+             {
+                path:'/contact',
+                Component: ContactUs
+            },
+
+            {
                 path:'/register',
                 Component:Register
             },
@@ -36,22 +54,7 @@ const router = createBrowserRouter([
                 Component: Login
             },
             
-            {
-                path:'/addHabit',
-                 Component: () => (
-                <ProtectedRoute>
-                    <AddHabit />
-                </ProtectedRoute>
-                )
-            },
-            {
-                path: '/myHabits',
-                 Component: () => (
-                <ProtectedRoute>
-                    <MyHabit />
-                </ProtectedRoute>
-                 )
-            },
+            
             {
                 path: '/browsePublicHabits',
                 Component: PublicHabit
@@ -59,9 +62,9 @@ const router = createBrowserRouter([
             {
             path: "/habit-details/:id",
             element: (
-                <ProtectedRoute>
+               
                 <HabitDetails />
-                </ProtectedRoute>
+               
             ),
             },
             {
@@ -72,6 +75,10 @@ const router = createBrowserRouter([
                 </ProtectedRoute>
                  )
             },
+
+
+            
+            
             {
                 path: "/termsAndCondition",
                 Component: TermsAndConditions
@@ -83,6 +90,73 @@ const router = createBrowserRouter([
         ]
     },
 
+    {
+                path:'/dashboard',
+                Component: ()=>(
+                    <ProtectedRoute>
+                        <Dashboard></Dashboard>
+                    </ProtectedRoute>
+                ),
+                children: [
+                    {
+                path:'/dashboard/profile',
+                Component: ()=>(
+                    <ProtectedRoute>
+                        <Profile></Profile>
+                    </ProtectedRoute>
+                )
+            },
+                    {
+                        path:'/dashboard/user-directory',
+                        Component: ()=>(
+                            <ProtectedRoute>
+                                <UserDirectory></UserDirectory>
+                            </ProtectedRoute>
+                        )
+                    },
+                    {
+                         path:'/dashboard/global-analytics',
+                        Component: ()=>(
+                            <ProtectedRoute>
+                                <GlobalAnalytics></GlobalAnalytics>
+                            </ProtectedRoute>
+                        )
+                    },
+                    {
+                        path:'/dashboard/system-log',
+                        Component: ()=> (
+                            <ProtectedRoute>
+                                <SystemLogs></SystemLogs>
+                            </ProtectedRoute>
+                        )
+                    },
+                    {
+                        path:'/dashboard/all-habits',
+                        Component: ()=> (
+                            <ProtectedRoute>
+                               <AllHabits></AllHabits>
+                            </ProtectedRoute>
+                        )
+                    },
+                    {
+                path:'/dashboard/addHabit',
+                 Component: () => (
+                <ProtectedRoute>
+                    <AddHabit />
+                </ProtectedRoute>
+                )
+            },
+            {
+                path: '/dashboard/myHabits',
+                 Component: () => (
+                <ProtectedRoute>
+                    <MyHabit />
+                </ProtectedRoute>
+                 )
+            },
+                ]
+            },
+           
     {
         path:'/*',
         Component: ErrorPage

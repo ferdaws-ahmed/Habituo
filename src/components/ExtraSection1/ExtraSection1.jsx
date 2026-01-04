@@ -32,8 +32,8 @@ const cardData = [
 
 const ExtraSection1 = () => {
   return (
-    <section className="bg-gray-900 py-12 mt-10 border rounded-2xl">
-      <h2 className="text-3xl font-bold text-center mb-10 text-white">
+    <section className=" py-12 mt-10 ">
+      <h2 className="text-3xl font-bold text-center mb-10 ">
         🚀 Why Choose Habituo?
       </h2>
 

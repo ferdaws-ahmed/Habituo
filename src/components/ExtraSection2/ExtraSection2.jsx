@@ -7,7 +7,7 @@ import { useNavigate } from "react-router";
 const MotionSection = () => {
   const navigate = useNavigate();
   return (
-    <section className="bg-gradient-to-r from-purple-100 via-purple-50 to-purple-100 py-20 px-5 mt-10 border rounded-2xl">
+    <section className="bg-gradient-to-r from-purple-100 via-purple-50 to-purple-100 dark:bg-gradient-to-r dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-20 px-5 mt-10 ">
       <div className="max-w-4xl mx-auto text-center">
         <motion.h2
           className="text-4xl font-bold text-purple-700 mb-6"
@@ -20,7 +20,7 @@ const MotionSection = () => {
         </motion.h2>
 
         <motion.p
-          className="text-gray-700 mb-10 text-lg"
+          className="text-gray-700 mb-10 text-lg dark:text-white"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -47,7 +47,7 @@ const MotionSection = () => {
           transition={{ duration: 1, delay: 0.5 }}
         >
           <motion.div
-            className="p-6 bg-white rounded-xl shadow hover:shadow-lg transition cursor-default"
+            className="p-6 bg-white dark:bg-gray-900 rounded-xl shadow hover:shadow-lg transition cursor-default"
             whileHover={{ y: -5 }}
           >
             <h3 className="text-xl font-bold mb-2 text-purple-700">Track Progress</h3>
@@ -57,7 +57,7 @@ const MotionSection = () => {
           </motion.div>
 
           <motion.div
-            className="p-6 bg-white rounded-xl shadow hover:shadow-lg transition cursor-default"
+            className="p-6 bg-white dark:bg-gray-900 rounded-xl shadow hover:shadow-lg transition cursor-default"
             whileHover={{ y: -5 }}
           >
             <h3 className="text-xl font-bold mb-2 text-purple-700">Stay Motivated</h3>
