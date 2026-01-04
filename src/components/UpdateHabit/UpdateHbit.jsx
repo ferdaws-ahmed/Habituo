@@ -42,7 +42,7 @@ const UpdateHabit = () => {
       .then(() => {
         toast.success("Habit updated successfully!");
         form.reset();
-        setTimeout(() => navigate("/myhabits"), 1000);
+        setTimeout(() => navigate("/dashboard/myHabits"), 1000);
       })
       .catch((err) => {
         console.error("Error updating habit:", err);

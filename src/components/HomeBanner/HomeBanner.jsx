@@ -3,24 +3,28 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
 import { useNavigate } from "react-router";
 
+import hero1 from '../../assets/image/herobg1.png'
+import hero2 from '../../assets/image/herobg2.png'
+import hero3 from '../../assets/image/herobg3.png'
+
 const slides = [
   {
     title: "Welcome to Habituo!",
     description: ["Build Habits.", "Stay Consistent.", "Achieve Goals."],
     subtext: "Start your journey towards a productive lifestyle today.",
-    bgGradient: "bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800",
+    bgImage: hero1,
   },
   {
     title: "Track Your Progress",
     description: ["Daily Tracking.", "Boost Motivation.", "Stay on Track."],
     subtext: "Monitor your daily achievements and never lose focus.",
-    bgGradient: "bg-gradient-to-r from-gray-700 via-gray-600 to-gray-700",
+    bgImage: hero2,
   },
   {
     title: "Achieve Your Dreams",
     description: ["Small Steps.", "Big Wins.", "Reach Success."],
     subtext: "Transform small habits into lifelong successes.",
-    bgGradient: "bg-gradient-to-r from-gray-600 via-gray-500 to-gray-600",
+    bgImage: hero3,
   },
 ];
 
@@ -32,16 +36,26 @@ const HomeBanner = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
-    }, 5000);
+    }, 10000);
     return () => clearInterval(timer);
   }, []);
 
   return (
-    <div className="relative w-full h-[50vh] overflow-hidden rounded-b-2xl shadow-lg">
+    <div className="relative w-full h-[60vh] overflow-hidden md:rounded-b-2xl shadow-lg">
       
-      <div
-        className={`absolute inset-0 transition-all duration-1000 ${slides[current].bgGradient}`}
-      ></div>
+     <motion.div
+     
+  key={current}
+  initial={{ opacity: 0, scale: 1.05 }}
+  animate={{ opacity: 1, scale: 1 }}
+  transition={{ duration: 1 }}
+  className="absolute inset-0 bg-cover bg-center"
+  style={{
+    backgroundImage: `url(${slides[current].bgImage})`,
+  }}
+/>
+<div className="absolute inset-0 bg-black/60"></div> 
+
 
     
       <AnimatePresence mode="wait">
