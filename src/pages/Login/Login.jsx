@@ -1,53 +1,45 @@
-
 import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { IoEyeOff, IoEye } from 'react-icons/io5';
 import { FcGoogle } from 'react-icons/fc';
+import { TbBrain, TbCheckupList, TbChartDots, TbUserShield, TbUserCircle } from 'react-icons/tb';
 import { AuthContext } from '../../contexts/AuthContext';
 import { toast } from 'react-toastify';
 
 const LoginPage = () => {
   const { signInUser, signInWithGoogle } = useContext(AuthContext);
   const [show, setShow] = useState(false);
+  
+  // input field control করার জন্য state (Demo fill এর জন্য মাস্ট লাগবে)
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  
   const navigate = useNavigate();
+
+  // Demo Credentials Handler
+  const fillDemo = (demoEmail, demoPass) => {
+    setEmail(demoEmail);
+    setPassword(demoPass);
+    toast.info(`Credentials set for ${demoEmail === 'admin@habituo.com' ? 'Admin' : 'User'}`);
+  };
 
   const handleLogin = (e) => {
     e.preventDefault();
-    const form = e.target;
-    const email = form.email.value;
-    const password = form.password.value;
-
     signInUser(email, password)
-      .then((result) => {
-        toast.success(' Login successful!');
-        form.reset();
+      .then(() => {
+        toast.success('🎉 Welcome Back to Habituo!');
         navigate('/'); 
       })
       .catch((error) => {
         console.error(error);
-      
-        let message = "⚠️ Invalid email or password!";
-        if (error.code === "auth/user-not-found") {
-          message = "❌ User not found!";
-        } else if (error.code === "auth/wrong-password") {
-          message = "❌ Wrong password!";
-        } 
-        toast.error(message, {
-          position: "top-center",
-          autoClose: 4000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        toast.error("⚠️ Invalid email or password!");
       });
   };
 
   const handleGoogleLogin = () => {
     signInWithGoogle()
-      .then((result) => {
-        toast.success(' Logged in with Google!');
+      .then(() => {
+        toast.success('🚀 Logged in with Google!');
         navigate('/'); 
       })
       .catch((error) => {
@@ -57,109 +49,130 @@ const LoginPage = () => {
   };
 
   return (
-    <div className='flex justify-center items-center min-h-screen 
-                    bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 
-                    dark:from-gray-900 dark:via-blue-900 dark:to-purple-900
-                    text-gray-900 dark:text-white p-4 sm:p-6'>
-
-      <div className="card bg-base-100 dark:bg-gray-800 w-full max-w-sm shrink-0 shadow-2xl 
-                      rounded-2xl border border-gray-200 dark:border-gray-700
-                      hover:shadow-3xl transition-all duration-300 ease-in-out">
+    <div className='min-h-screen flex items-center justify-center bg-white dark:bg-slate-950 transition-colors duration-500 overflow-hidden px-4'>
+      <div className="flex w-full max-w-[1200px] min-h-[720px] bg-white dark:bg-slate-900 md:shadow-2xl md:rounded-[40px] overflow-hidden border border-slate-100 dark:border-slate-800">
         
-        <h1 className='text-center text-3xl font-extrabold mt-6 mb-4 
-                       text-indigo-700 dark:text-indigo-400'>
-          Login to Your Account
-        </h1>
+        {/* Left Side: Animation & Brand */}
+        <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-primary to-secondary p-12 flex-col justify-between relative overflow-hidden">
+          <div className="absolute top-[-10%] right-[-10%] w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-[-10%] left-[-10%] w-64 h-64 bg-black/10 rounded-full blur-3xl"></div>
 
-        <form onSubmit={handleLogin} className="card-body py-0"> 
-          <fieldset className="fieldset space-y-4"> 
-            
-            {/* Email Input */}
-            <div className="form-control"> 
-              <label className="label">
-                <span className="label-text text-base font-semibold dark:text-gray-300">Email</span>
-              </label>
-              <input 
-                type="email" 
-                name='email' 
-                className="input input-bordered w-full text-base dark:bg-gray-700 dark:border-gray-600 dark:text-white" 
-                placeholder="you@example.com" 
-                required
-              />
+          <div className="relative z-10">
+            <Link to="/" className="flex items-center gap-2 text-white">
+              <TbBrain className="text-4xl" />
+              <span className="text-3xl font-black tracking-tighter">Habituo</span>
+            </Link>
+          </div>
+
+          <div className="relative z-10 flex flex-col items-center">
+            <div className="w-full max-w-sm aspect-square bg-white/5 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 animate-pulse">
+               <TbChartDots className="text-[180px] text-white/40" />
+            </div>
+            <div className="mt-12 text-center">
+              <h2 className="text-4xl font-bold text-white mb-4">Master Your Routine</h2>
+              <p className="text-white/80 text-lg">Consistent small wins leads to massive success.</p>
+            </div>
+          </div>
+
+          <div className="relative z-10 flex gap-6 justify-center text-white/70 text-sm italic">
+            <div className="flex items-center gap-2"><TbCheckupList /> Verified Progress</div>
+            <div className="flex items-center gap-2"><TbCheckupList /> Data Security</div>
+          </div>
+        </div>
+
+        {/* Right Side: Login Form */}
+        <div className="w-full lg:w-1/2 p-8 md:p-16 flex flex-col justify-center bg-white dark:bg-slate-900">
+          <div className="max-w-[400px] mx-auto w-full">
+            <div className="mb-10">
+              <h1 className="text-4xl font-black text-slate-900 dark:text-white mb-2 tracking-tight">Login</h1>
+              <p className="text-slate-500 dark:text-slate-400">Please enter your details or use demo access.</p>
             </div>
 
-            {/* Password Input */}
-            <div className="form-control relative">
-              <label className="label">
-                <span className="label-text text-base font-semibold dark:text-gray-300">Password</span>
-              </label>
-              <input 
-                name='password' 
-                type={show ? "text" : "password"} 
-                className="input input-bordered w-full text-base dark:bg-gray-700 dark:border-gray-600 dark:text-white" 
-                placeholder="••••••••" 
-                required
-              />
-              <span 
-                onClick={()=> setShow(!show)} 
-                className='absolute right-4 top-[calc(50%+10px)] -translate-y-1/2 cursor-pointer text-gray-500 dark:text-gray-400' 
-              >
-                {show ? <IoEyeOff size={18} /> : <IoEye size={18} />} 
-              </span>
-            </div>
+            <form onSubmit={handleLogin} className="space-y-4">
+              {/* Email Field */}
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text font-bold text-slate-700 dark:text-slate-300">Email</span>
+                </label>
+                <input 
+                  type="email" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email" 
+                  className="input input-bordered w-full h-14 rounded-2xl bg-slate-50 dark:bg-slate-800 border-none focus:ring-2 focus:ring-primary text-lg" 
+                  required 
+                />
+              </div>
 
-            {/* Forget Password */}
-            <div className='text-right'> 
-              <button
-                type="button"
-                onClick={() => toast.info("🔔 Forget password triggered!")}
-                className="link link-hover text-sm font-medium text-blue-500 dark:text-blue-400 hover:underline"
-              >
-                Forgot password?
+              {/* Password Field */}
+              <div className="form-control relative">
+                <label className="label">
+                  <span className="label-text font-bold text-slate-700 dark:text-slate-300">Password</span>
+                </label>
+                <input 
+                  type={show ? "text" : "password"} 
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="••••••••" 
+                  className="input input-bordered w-full h-14 rounded-2xl bg-slate-50 dark:bg-slate-800 border-none focus:ring-2 focus:ring-primary text-lg pr-12" 
+                  required 
+                />
+                <button 
+                  type="button"
+                  onClick={() => setShow(!show)}
+                  className="absolute right-4 top-[44px] text-slate-400 hover:text-primary transition-colors"
+                >
+                  {show ? <IoEyeOff size={22} /> : <IoEye size={22} />}
+                </button>
+              </div>
+
+              {/* Forget Password */}
+              <div className="flex justify-end pt-1">
+                <button type="button" onClick={() => toast.info("Reset system coming soon!")} className="text-sm font-bold text-primary hover:underline">
+                  Forgot Password?
+                </button>
+              </div>
+
+              {/* ✨ DEMO ACCOUNTS ✨ */}
+              <div className="grid grid-cols-2 gap-3 pt-2">
+                <button 
+                  type="button"
+                  onClick={() => fillDemo('mahir@asif.com', 'Admin123')}
+                  className="flex items-center justify-center gap-2 p-3 rounded-xl border-2 border-dashed border-emerald-500/50 text-emerald-600 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-500/5 hover:bg-emerald-500 hover:text-white transition-all duration-300 group font-bold text-xs"
+                >
+                  <TbUserShield className="text-xl animate-bounce group-hover:animate-none" />
+                  Demo Admin
+                </button>
+                <button 
+                  type="button"
+                  onClick={() => fillDemo('mahi@alom.com', 'User123')}
+                  className="flex items-center justify-center gap-2 p-3 rounded-xl border-2 border-dashed border-blue-500/50 text-blue-600 dark:text-blue-400 bg-blue-50/50 dark:bg-blue-500/5 hover:bg-blue-500 hover:text-white transition-all duration-300 group font-bold text-xs"
+                >
+                  <TbUserCircle className="text-xl animate-pulse group-hover:animate-none" />
+                  Demo User
+                </button>
+              </div>
+
+              <button type="submit" className="btn btn-primary w-full h-14 rounded-2xl text-lg font-black shadow-xl shadow-primary/20 hover:scale-[1.01] active:scale-[0.99] transition-all mt-4">
+                Sign In
               </button>
-            </div>
 
-            {/* Login Button */}
-            <button 
-              type="submit"
-              className="btn btn-primary w-full mt-4 text-lg font-bold
-                         transform transition-transform duration-200 hover:scale-[1.01] 
-                         shadow-md shadow-blue-500/30"
-            >
-              Login
-            </button>
+              <div className="divider dark:before:bg-slate-800 dark:after:bg-slate-800 text-xs font-bold text-slate-400 uppercase tracking-widest">Or Secure Login</div>
 
-            {/* Divider */}
-            <div className='flex justify-center items-center gap-3 py-2'> 
-              <div className='h-px flex-grow bg-gray-300 dark:bg-gray-600'></div> 
-              <span className='text-gray-500 dark:text-gray-400'>or</span>
-              <div className='h-px flex-grow bg-gray-300 dark:bg-gray-600'></div>
-            </div>
-
-            {/* Google Login Button */}
-            <button 
-              type="button" 
-              onClick={handleGoogleLogin}
-              className="btn btn-outline w-full text-base flex items-center justify-center gap-2 
-                         border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white
-                         transition-colors duration-200"
-            >
-              <FcGoogle className="text-xl" />
-              Continue with Google
-            </button>
-
-            {/* Register Link */}
-            <p className='text-center mt-6 text-gray-600 dark:text-gray-400'>
-              Don't Have an account?{' '}
-              <Link 
-                to='/register' 
-                className='text-base font-bold text-indigo-600 dark:text-indigo-400 hover:underline'
+              <button 
+                type="button" 
+                onClick={handleGoogleLogin}
+                className="btn btn-outline w-full h-13 rounded-2xl border-slate-200 dark:border-slate-700 flex items-center justify-center gap-3 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all font-bold"
               >
-                Register
-              </Link>
+                <FcGoogle className="text-2xl" /> Continue with Google
+              </button>
+            </form>
+
+            <p className="mt-8 text-center text-slate-500 dark:text-slate-400">
+              New to Habituo? <Link to="/register" className="text-primary font-black hover:underline">Join now</Link>
             </p>
-          </fieldset>
-        </form>
+          </div>
+        </div>
       </div>
     </div>
   );

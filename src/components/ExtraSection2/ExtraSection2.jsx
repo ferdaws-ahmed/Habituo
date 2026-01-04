@@ -7,7 +7,7 @@ import { useNavigate } from "react-router";
 const MotionSection = () => {
   const navigate = useNavigate();
   return (
-    <section className="bg-gradient-to-r from-purple-100 via-purple-50 to-purple-100 dark:bg-gradient-to-r dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-20 px-5 mt-10 ">
+    <section className="w-10/12 mx-auto bg-gradient-to-r from-purple-100 via-purple-50 to-purple-100 dark:bg-gradient-to-r dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-20 px-5 mt-10 ">
       <div className="max-w-4xl mx-auto text-center">
         <motion.h2
           className="text-4xl font-bold text-purple-700 mb-6"

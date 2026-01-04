@@ -17,11 +17,11 @@ const HomeLayout = () => {
                 <Navbar />
             </header>
 
-            <main className='flex-grow w-full md:w-10/12 mx-auto'>
+            <main className='flex-grow w-full  mx-auto'>
                 <Outlet />
             </main>
 
-            <footer className='w-11/12 md:w-10/12 mx-auto py-4'>
+            <footer className='w-full mx-auto py-4'>
                 <Footer />
             </footer>
         </div>

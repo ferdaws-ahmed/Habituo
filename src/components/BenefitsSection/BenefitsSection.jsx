@@ -26,7 +26,7 @@ const BenefitsSection = () => {
   ];
 
   return (
-    <div className="py-16 px-5 dark:bg-gray-900  mt-10">
+    <div className="py-16 px-5 w-10/12 mx-auto dark:bg-gray-900  mt-10">
       <h2 className="text-4xl font-extrabold text-center mb-14 text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-pink-500 dark:from-indigo-400 dark:to-pink-400">
         Why Build Habits?
       </h2>
